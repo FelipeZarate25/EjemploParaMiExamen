@@ -1,0 +1,83 @@
+//Aquí podemos agregar una nota, código de programas, por ejemplo.
+//Yo agregare el archivo que programamos con el profesor de computadoras y programación
+//Felipe de Jesus Pedro Zarate  Grupo:1108
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <iostream>
+
+
+int main() {
+
+	//Variables para usar en el ordenamiento.
+	int alumnos, posicion;
+
+	//Aqui se pide el numeros de alumnos en la lista.
+	scanf_s("%i", &alumnos);
+  
+	//Variables para guardar los datos despues de ser 
+	float* calif, fcalif;
+	long int* cuenta, listaux;
+
+	//Para asignar una matriz en la memoria con los elementos inicializados a 0.
+	calif = (float*)calloc(alumnos + 1, sizeof(float));
+	cuenta = (long int*)calloc(alumnos + 1, sizeof(long int));
+
+	//Para pedir los datos de las cuentas y las calificaciones.
+	for (int i = 0; i < alumnos; i++) {
+
+		scanf_s("%li %f", &cuenta[i], &calif[i]);
+
+	}
+
+	//For es para el ordenamiento.
+	for (int i = 0; i < alumnos; i++) {
+		posicion = i;
+
+		//For es para seleccionar.
+		for (int j = i + 1; j < alumnos; j++) {
+			//Aqui para resolver las repetidas. <<Primero ordenamos en numero de cuenta, y luego eliminamos las repetidas>>
+			if (cuenta[posicion] >= cuenta[j]) { //es mi posicion actual mayor o igual a la posicion siguiente? <<< j >>
+				posicion = j;
+			}
+		}
+		//Para el intercambio de i de la cuenta.
+		listaux = cuenta[i];
+		cuenta[i] = cuenta[posicion];
+		cuenta[posicion] = listaux;
+
+		//Para el intercambio de i de la calificacion.
+		fcalif = calif[i];
+		calif[i] = calif[posicion];
+		calif[posicion] = fcalif;
+	}
+
+	//Para imprimir cuantos alumnos son: sin ser repetidas.
+	int imprimir = 0;
+	for (int i = 0; i < alumnos; i++) {
+		imprimir += (cuenta[i] != cuenta[i + 1]) ? 1 : 0;
+	}
+	printf("%i\n", imprimir);
+
+	/*Para imprimir el resultado de las cuentas y la calificacion.*/
+	posicion = 0;
+	for (int i = 0; i < alumnos; i++) {
+
+		if (calif[posicion] < calif[i + 1] && cuenta[posicion] == cuenta[i + 1]) {
+			posicion = i + 1;
+		}
+		/*Resultado*/
+		if (cuenta[i] != cuenta[i + 1]) {
+			printf("%li %f\n", cuenta[posicion], calif[posicion]);
+			posicion = i + 1;
+		}
+	}
+
+	//Para liberar memoria.
+	free(cuenta);
+	free(calif);
+
+	//Para que el sistema retorne en 0.
+	return 0;
+
+}

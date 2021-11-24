@@ -1,0 +1,16 @@
+crear dos archivos 
+creacion sera por terminal)
+	hola.txt
+		hola mundo
+	hola.cpp
+		hola mundo en C
+
+1.-_ cambiar el nombre del archivos
+		Hola.txt por -> saludo.txt
+
+2.- crear una carpeta [carpetaDatos]
+		mover el archivo hola.cpp 
+		a esa carpeta
+
+
+hack the game
